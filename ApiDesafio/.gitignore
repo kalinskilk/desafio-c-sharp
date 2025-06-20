@@ -1,2 +1,4 @@
-/db
-/bin
+# .NET build folders
+bin/
+obj/
+db/
