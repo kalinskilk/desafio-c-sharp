@@ -32,28 +32,45 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
    Certifique-se de ter o SDK do .NET 9 instalado. Depois, execute:
 
    ```bash
-    cd ApiDesafio && dotnet restore
+    cd ApiDesafio
+    dotnet restore
    ```
 
-3. **Configure o banco de dados** :
+3. **Ferramenta CLI do Entity Framework Core instalada**
+
+   Para verificar se você já possui a ferramenta instalada, execute:
+
+   ```bash
+   dotnet ef
+   ```
+
+   Se aparecer uma lista de comandos como migrations add, database update, etc., está tudo certo ✅.
+
+   Se **não** aparecer, instale a ferramenta com o comando:
+
+   ```bash
+   dotnet tool install --global dotnet-ef
+   ```
+
+4. **Configure o banco de dados** :
 
    ```bash
    dotnet ef database update
    ```
 
-4. **Execute a aplicação**:
+5. **Execute a aplicação**:
 
    ```bash
    dotnet run
    ```
 
-5. Acesse o Swagger:
+6. Acesse o Swagger:
 
    ```
    http://localhost:5275/index.html
    ```
 
-6. **Instale as dependências do Front end**:
+7. **Instale as dependências do Front end**:
    Certifique-se de ter o node.js instalado. Em um novo terminal execute:
 
    ```bash
@@ -66,7 +83,7 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
    cd FrontDesafio && yarn install
    ```
 
-7. **Execute a aplicação**:
+8. **Execute a aplicação**:
    Execute:
 
    ```bash
@@ -79,7 +96,7 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
     yarn start
    ```
 
-8. **Acesse a aplicação**:
+9. **Acesse a aplicação**:
 
    ```bash
    http://localhost:4200/
@@ -177,3 +194,15 @@ dotnet test
 - ✅ **Testes unitários com xUnit**, incluindo:
   - Verificação da regra de negócio principal
   - Testes de controllers
+
+# Created By
+
+```
+  _                       _         _ _           _    _
+ | |                     | |       | (_)         | |  (_)
+ | |_   _  ___ __ _ ___  | | ____ _| |_ _ __  ___| | ___
+ | | | | |/ __/ _` / __| | |/ / _` | | | '_ \/ __| |/ / |
+ | | |_| | (_| (_| \__ \ |   < (_| | | | | | \__ \   <| |
+ |_|\__,_|\___\__,_|___/ |_|\_\__,_|_|_|_| |_|___/_|\_\_|
+
+```
