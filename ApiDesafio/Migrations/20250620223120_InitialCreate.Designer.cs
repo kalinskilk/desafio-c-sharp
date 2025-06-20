@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiDesafio.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250616172029_InitialCreate")]
+    [Migration("20250620223120_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -79,6 +79,9 @@ namespace ApiDesafio.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NomeUnico")
+                        .IsUnique();
 
                     b.ToTable("FeatureToggle");
                 });

@@ -77,6 +77,9 @@ namespace ApiDesafio.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("NomeUnico")
+                        .IsUnique();
+
                     b.ToTable("FeatureToggle");
                 });
 

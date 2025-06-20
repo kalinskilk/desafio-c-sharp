@@ -74,6 +74,12 @@ namespace ApiDesafio.Migrations
                 name: "IX_ConfiguracaoAmbienteFeature_FeatureToggleId",
                 table: "ConfiguracaoAmbienteFeature",
                 column: "FeatureToggleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeatureToggle_NomeUnico",
+                table: "FeatureToggle",
+                column: "NomeUnico",
+                unique: true);
         }
 
         /// <inheritdoc />
