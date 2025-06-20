@@ -1,89 +1,54 @@
-
-using Microsoft.AspNetCore.Mvc;
 using ApiDesafio.Domain.Entities;
+using ApiDesafio.Application.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+namespace ApiDesafio.API.Controllers;
+
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/featureToggles")]
 public class FeatureTogglesController : ControllerBase
 {
-    private static List<FeatureToggle> _features = new(); // Simulando DB
-    private static int _nextId = 1;
+    private readonly IFeatureToggleService _featureToggleService;
 
-    [HttpPost]
-    public IActionResult Create([FromBody] CreateFeatureToggleDto dto)
+    public FeatureTogglesController(IFeatureToggleService service)
     {
-        if (_features.Any(f => f.NomeUnico == dto.NomeUnico))
-            return Conflict("Nome único já existe.");
 
-        var feature = new FeatureToggle
-        {
-            Id = _nextId++,
-            NomeUnico = dto.NomeUnico,
-            Descricao = dto.Descricao,
-            AtivoGlobalmente = dto.AtivoGlobalmente
-        };
-
-        _features.Add(feature);
-        return CreatedAtAction(nameof(GetAll), new { id = feature.Id }, feature);
+        _featureToggleService = service;
     }
 
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<ActionResult<IEnumerable<FeatureToggle>>> GetAll()
     {
-        return Ok(_features);
+        var result = await _featureToggleService.GetAllAsync();
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Create(CreateFeatureToggleDto toggle)
+    {
+        var result = await _featureToggleService.CreateFeatureToggleAsync(toggle);
+        return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var result = await _featureToggleService.GetByIdAsync(id);
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, [FromBody] UpdateFeatureToggleDto dto)
+    public async Task<ActionResult> Update(int id, UpdateFeatureToggleDto input)
     {
-        var feature = _features.FirstOrDefault(f => f.Id == id);
-        if (feature == null) return NotFound();
+        var result = await _featureToggleService.Update(id, input);
+        if (result == false)
+            return NotFound();
 
-        feature.Descricao = dto.Descricao;
-        feature.AtivoGlobalmente = dto.AtivoGlobalmente;
-
-        return NoContent();
+        return Ok(result);
     }
-
-    /* [HttpPost("{featureToggleId}/ambientes/{ambienteId}/config")]
-    public IActionResult UpdateAmbienteConfig(int featureToggleId, string ambienteId, [FromBody] UpdateAmbienteConfigDto dto)
-    {
-        var feature = _features.FirstOrDefault(f => f.Id == featureToggleId);
-        if (feature == null) return NotFound();
-
-        var config = feature.ConfiguracoesAmbiente
-            .FirstOrDefault(c => c.AmbienteNomeUnico == ambienteId);
-
-        if (config == null)
-        {
-            config = new FeatureToggleAmbienteConfig
-            {
-                Id = feature.ConfiguracoesAmbiente.Count + 1,
-                FeatureToggleId = feature.Id,
-                AmbienteNomeUnico = ambienteId,
-                AtivoNesteAmbiente = dto.AtivoNesteAmbiente,
-                FeatureToggle = feature
-            };
-            feature.ConfiguracoesAmbiente.Add(config);
-        }
-        else
-        {
-            config.AtivoNesteAmbiente = dto.AtivoNesteAmbiente;
-        }
-
-        return Ok(config);
-    } */
-
-    /*   [HttpGet("status")]
-      public IActionResult GetStatus([FromQuery] string featureName, [FromQuery] string environmentName)
-      {
-          var feature = _features.FirstOrDefault(f => f.NomeUnico == featureName);
-          if (feature == null) return NotFound("Feature não encontrada.");
-
-          var config = feature.ConfiguracoesAmbiente
-              .FirstOrDefault(c => c.AmbienteNomeUnico == environmentName);
-
-          var status = config?.AtivoNesteAmbiente ?? feature.AtivoGlobalmente;
-          return Ok(new { ativo = status });
-      } */
 }
