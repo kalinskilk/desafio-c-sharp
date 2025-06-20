@@ -7,7 +7,7 @@ public interface IAmbienteRepository
     Task<IEnumerable<Ambiente>> GetAllAsync();
     Task AddAsync(Ambiente ambiente);
 
-    Task<Ambiente> GetByIdAsync(int id);
+    Task<Ambiente?> GetByIdAsync(int id);
 
     Task<bool> ExistsWithPropertiesButDifferentIdAsync<T>(
    Dictionary<string, object> propertyValuePairs) where T : class;

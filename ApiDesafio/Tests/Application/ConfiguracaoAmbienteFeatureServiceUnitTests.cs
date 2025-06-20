@@ -51,7 +51,7 @@ namespace ApiDesafio.Tests.Unit
                 .ReturnsAsync(ambiente);
 
             _mockConfigRepo.Setup(x => x.GetByFeatureToggleAndAmbienteAsync(1, 1))
-                .ReturnsAsync((ConfiguracaoAmbienteFeature)null);
+                .ReturnsAsync((ConfiguracaoAmbienteFeature?)null);
 
             // Act
             var status = await _service.GetStatusFeatureToggleAsync("FeatureY", "Homolog");
@@ -167,7 +167,7 @@ namespace ApiDesafio.Tests.Unit
                 .ReturnsAsync(ambiente);
 
             _mockConfigRepo.Setup(x => x.GetByFeatureToggleAndAmbienteAsync(1, 1))
-                .ReturnsAsync((ConfiguracaoAmbienteFeature)null);
+                .ReturnsAsync((ConfiguracaoAmbienteFeature?)null);
 
             // Act
             var status = await _service.GetStatusFeatureToggleAsync("FeatureX", "Prod");

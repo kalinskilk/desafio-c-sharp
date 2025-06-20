@@ -55,6 +55,8 @@ public class AmbienteControllerTests
 
         // Assert
         var createdResult = Assert.IsType<CreatedAtActionResult>(result);
-        Assert.Equal(createdDto.Id, ((AmbienteDto)createdResult.Value).Id);
+        var value = createdResult.Value as AmbienteDto;
+        Assert.NotNull(value);
+        Assert.Equal(createdDto.Id, value.Id); ;
     }
 }

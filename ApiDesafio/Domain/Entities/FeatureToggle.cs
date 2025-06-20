@@ -11,10 +11,10 @@ namespace ApiDesafio.Domain.Entities
 
         [Required]
         [MaxLength(100)]
-        public string NomeUnico { get; set; }
+        public required string NomeUnico { get; set; }
 
         [MaxLength(255)]
-        public string Descricao { get; set; }
+        public required string Descricao { get; set; }
 
         public bool AtivoGlobalmente { get; set; }
     }

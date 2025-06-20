@@ -13,13 +13,13 @@ namespace ApiDesafio.Domain.Entities
         public int FeatureToggleId { get; set; }
 
         [ForeignKey("FeatureToggleId")]
-        public FeatureToggle FeatureToggle { get; set; }
+        public FeatureToggle? FeatureToggle { get; set; }
 
         [Required]
         public int AmbienteId { get; set; }
 
         [ForeignKey("AmbienteId")]
-        public Ambiente Ambiente { get; set; }
+        public Ambiente? Ambiente { get; set; }
 
         public bool AtivoNesteAmbiente { get; set; }
     }
