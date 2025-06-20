@@ -11,4 +11,6 @@ public interface IFeatureToggleRepository
 
     Task<bool> ExistsWithPropertiesButDifferentIdAsync<T>(
     Dictionary<string, object> propertyValuePairs) where T : class;
+
+    Task<FeatureToggle?> GetByNameAsync(string nomeUnico);
 }

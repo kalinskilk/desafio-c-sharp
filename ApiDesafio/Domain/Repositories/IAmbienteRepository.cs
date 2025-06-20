@@ -11,4 +11,6 @@ public interface IAmbienteRepository
 
     Task<bool> ExistsWithPropertiesButDifferentIdAsync<T>(
    Dictionary<string, object> propertyValuePairs) where T : class;
+
+    Task<Ambiente?> GetByNameAsync(string nomeUnico);
 }

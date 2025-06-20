@@ -20,14 +20,17 @@ public class AmbienteRepository : IAmbienteRepository
     public async Task<IEnumerable<Ambiente>> GetAllAsync() =>
         await _context.Ambiente.ToListAsync();
 
-    public async Task AddAsync(Ambiente toggle)
+    public async Task AddAsync(Ambiente ambiente)
     {
-        _context.Ambiente.Add(toggle);
+        _context.Ambiente.Add(ambiente);
         await _context.SaveChangesAsync();
     }
 
     public async Task<Ambiente?> GetByIdAsync(int id) =>
        await _context.Ambiente.FindAsync(id);
+
+    public async Task<Ambiente?> GetByNameAsync(string nomeUnico) =>
+    await _context.Ambiente.FirstOrDefaultAsync(f => f.NomeUnico == nomeUnico);
 
     public async Task<bool> ExistsWithPropertiesButDifferentIdAsync<T>(
    Dictionary<string, object> propertyValuePairs) where T : class
