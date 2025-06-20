@@ -11,6 +11,18 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureInvalidModelState();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular4200",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 /* DATABASE */
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=db/ApiDesafio.db"));
@@ -39,6 +51,8 @@ if (app.Environment.IsDevelopment())
         options.RoutePrefix = string.Empty;
     });
 }
+
+app.UseCors("AllowAngular4200");
 
 app.UseAuthentication();
 
