@@ -28,13 +28,20 @@ namespace ApiDesafio.Application.Services
             _ambienteRepository = ambienteRepository;
         }
 
-        public async Task CreateOrUpdateValidate(CreateConfiguracaoAmbienteFeatureDto dto, int featureToggleId, int ambienteId)
+        public async Task CreateOrUpdateValidate(int featureToggleId, int ambienteId)
         {
-            throw new NotImplementedException();
+            var feature = await _featureToggleRepository.GetByIdAsync(featureToggleId);
+            if (feature == null)
+                throw new InvalidOperationException("Nenhum FeatureToggle encontrado com o identificador informado. Verifique se o FeatureToggle foi criado.");
+
+            var ambiente = await _ambienteRepository.GetByIdAsync(ambienteId);
+            if (ambiente == null)
+                throw new InvalidOperationException("Nenhum Ambiente encontrado com o identificador informado. Verifique se o Ambiente foi criado.");
         }
 
         public async Task<ConfiguracaoAmbienteFeatureDto> CreateOrUpdateConfiguracaoAmbienteFeatureAsync(CreateConfiguracaoAmbienteFeatureDto dto, int featureToggleId, int ambienteId)
         {
+            await CreateOrUpdateValidate(featureToggleId, ambienteId);
             var configExists = await _repository.GetByFeatureToggleAndAmbienteAsync(featureToggleId, ambienteId);
             if (configExists == null)
             {
