@@ -1,6 +1,5 @@
 using ApiDesafio.API.Controllers;
 using ApiDesafio.Application.Services;
-using ApiDesafio.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
