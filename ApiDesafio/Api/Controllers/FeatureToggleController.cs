@@ -11,10 +11,13 @@ public class FeatureTogglesController : ControllerBase
 {
     private readonly IFeatureToggleService _featureToggleService;
 
-    public FeatureTogglesController(IFeatureToggleService service)
+    private readonly IConfiguracaoAmbienteFeatureService _configuracaoAmbienteFeatureService;
+
+    public FeatureTogglesController(IFeatureToggleService service, IConfiguracaoAmbienteFeatureService configuracaoAmbienteFeatureService)
     {
 
         _featureToggleService = service;
+        _configuracaoAmbienteFeatureService = configuracaoAmbienteFeatureService;
     }
 
     [HttpGet]
@@ -49,5 +52,30 @@ public class FeatureTogglesController : ControllerBase
             return NotFound();
 
         return Ok(result);
+    }
+
+    [HttpPost("{featureToggleId}/ambientes/{ambienteId}/config")]
+    public async Task<IActionResult> DefinirConfiguracaoAmbiente(
+    int featureToggleId,
+    int ambienteId,
+    [FromBody] CreateConfiguracaoAmbienteFeatureDto dto)
+    {
+        var result = await _configuracaoAmbienteFeatureService.CreateOrUpdateConfiguracaoAmbienteFeatureAsync(dto, featureToggleId, ambienteId);
+
+        if (result == null)
+            return NotFound("FeatureToggle ou Ambiente não encontrado.");
+
+        return Ok(result);
+    }
+
+    [HttpGet("status")]
+    public async Task<IActionResult> GetStatus(
+    [FromQuery] string featureName,
+    [FromQuery] string environmentName)
+    {
+        var ativo = await _configuracaoAmbienteFeatureService
+            .GetStatusFeatureToggleAsync(featureName, environmentName);
+
+        return Ok(new { ativo });
     }
 }

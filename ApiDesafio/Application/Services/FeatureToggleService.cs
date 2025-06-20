@@ -81,7 +81,6 @@ namespace ApiDesafio.Application.Services
 
         private async Task UpdateValidate(string NomeUnico, int id)
         {
-
             var filtros = new Dictionary<string, object>{
             { "NomeUnico", NomeUnico },
             { "Id", id },
