@@ -1,0 +1,30 @@
+<app-drawer #drawer [templateBody]="templateBodyDrawerEditFeature">
+</app-drawer>
+
+<ng-template #templateBodyDrawerEditFeature>
+  <div class="row align-items-end">
+    <form [formGroup]="formGroup">
+      <div class="col-sm-12 mb-3">
+        <app-input label="Nome" formControlName="nomeUnico"></app-input>
+      </div>
+      <div class="col-sm-12 mb-3">
+        <app-input label="Descrição" formControlName="descricao"></app-input>
+      </div>
+      <div class="col-sm-12 mb-3">
+        <app-toggle
+          label="Ativo Globalmente"
+          formControlName="ativoGlobalmente"
+        ></app-toggle>
+      </div>
+
+      <div class="col-sm-12">
+        <p-button
+          label="Salvar"
+          icon="pi pi-check"
+          iconPos="right"
+          (click)="onSubmit()"
+        />
+      </div>
+    </form>
+  </div>
+</ng-template>

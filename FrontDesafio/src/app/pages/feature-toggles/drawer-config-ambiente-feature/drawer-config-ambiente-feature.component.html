@@ -1,0 +1,40 @@
+<app-drawer #drawer [templateBody]="templateBodyDrawerConfigAmbienteFeature">
+</app-drawer>
+
+<ng-template #templateBodyDrawerConfigAmbienteFeature>
+  <form [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-input-select
+          label="Feature Toggle"
+          [options]="featureToggles"
+          formControlName="featureToggleId"
+        ></app-input-select>
+      </div>
+
+      <div class="col-sm-12">
+        <app-input-select
+          label="Ambiente"
+          [options]="ambientes"
+          formControlName="ambienteId"
+        ></app-input-select>
+      </div>
+
+      <div class="col-sm-12 mb-3">
+        <app-toggle
+          label="Ativo neste ambiente"
+          formControlName="ativoNesteAmbiente"
+        ></app-toggle>
+      </div>
+
+      <div class="col-sm-12">
+        <p-button
+          label="Salvar"
+          icon="pi pi-check"
+          iconPos="right"
+          (click)="onSubmit()"
+        />
+      </div>
+    </div>
+  </form>
+</ng-template>

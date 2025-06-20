@@ -1,0 +1,161 @@
+<div class="card rounded-lg {{ grid.styleClass }}" style="border: none">
+  <div class="mb-4" *ngIf="grid.showSearch || grid.showFilters">
+    <div class="flex-column">
+      <div class="w-full">
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="searchValue"
+          (input)="onSearchInput()"
+          placeholder="Buscar..."
+          class="p-mr-2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-table
+    #dt
+    [dataKey]="grid.columns[0].field"
+    [value]="grid.data"
+    [columns]="grid.columns"
+    [paginator]="grid.paginator === undefined ? true : grid.paginator"
+    [rows]="grid.pageSize || 10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="grid.pageSizeOptions"
+    [(selection)]="selectedItems"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [loading]="grid.loading"
+    [resizableColumns]="true"
+    [reorderableColumns]="true"
+    [scrollable]="true"
+    scrollHeight="400px"
+    [responsive]="grid.responsive"
+    [styleClass]="getTableClass()"
+    currentPageReportTemplate="{totalRecords} registros"
+    (onPage)="onPaginate($event)"
+    (selectionChange)="onSelectionChange($event)"
+    [totalRecords]="grid.totalRecords || 0"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngIf="grid.selectable || grid.multiSelect" style="width: 4rem">
+          <p-tableHeaderCheckbox
+            *ngIf="grid.multiSelect"
+          ></p-tableHeaderCheckbox>
+        </th>
+
+        <th
+          *ngFor="let col of grid.columns"
+          [pSortableColumn]="grid.sortable ? col.field : undefined"
+          [style.width]="col.width"
+          [ngClass]="{ 'frozen-column': col.frozen }"
+        >
+          {{ col.header }}
+          <p-sortIcon *ngIf="grid.sortable" [field]="col.field"></p-sortIcon>
+        </th>
+
+        <th *ngIf="grid.actions?.length" class="actions-column">Ações</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr [ngClass]="{ hoverable: grid.hoverable }">
+        <td *ngIf="grid.selectable || grid.multiSelect">
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
+        </td>
+
+        <td
+          *ngFor="let col of grid.columns"
+          [ngClass]="{ 'frozen-column': col.frozen }"
+          [ngSwitch]="col.type"
+        >
+          <ng-container *ngSwitchCase="'status'">
+            <span [class]="getStatusClass(item[col.field])">
+              {{ item[col.field] }}
+            </span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'currency'">
+            {{ item[col.field] | currency : "BRL" }}
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'date'">
+            {{ item[col.field] | date : "dd/MM/yyyy" }}
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'dateHour'">
+            {{ item[col.field] | date : "dd/MM/yyyy HH:mm:ss" }}
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'edit'">
+            <input
+              pInputText
+              class="w-100"
+              (blur)="onBlurEdit.emit(item)"
+              type="text"
+              [(ngModel)]="item[col.field]"
+            />
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'editCurrency'">
+            <p-inputnumber
+              class="w-100"
+              (onBlur)="onBlurEdit.emit(item)"
+              [(ngModel)]="item[col.field]"
+              inputId="locale-user"
+              [minFractionDigits]="0"
+            />
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'editFloat'">
+            <p-inputnumber
+              class="w-100"
+              (onBlur)="onBlurEdit.emit(item)"
+              [(ngModel)]="item[col.field]"
+              inputId="locale-user"
+              [minFractionDigits]="2"
+            />
+          </ng-container>
+
+          <ng-container *ngSwitchDefault>
+            {{ item[col.field] }}
+          </ng-container>
+        </td>
+
+        <td *ngIf="grid.actions?.length" class="actions-column">
+          <div class="flex gap-2 justify-content-center">
+            <a
+              *ngFor="let action of grid.actions"
+              href="javascript:void(0)"
+              [class]="'table-action-link ' + (action.class || '')"
+              [attr.disabled]="action.disabled ? true : null"
+              [pTooltip]="action.tooltip"
+              [tooltipPosition]="'bottom'"
+              (click)="!action.disabled && action.onClick(item)"
+            >
+              <i [class]="action.icon"></i>
+              <span *ngIf="action.label">{{ action.label }}</span>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="getColSpan()" class="text-center p-4">
+          {{ grid.emptyMessage || "Nenhum registro encontrado" }}
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorright">
+      <div *ngIf="templatePaginatorright">
+        <ng-container
+          [ngTemplateOutlet]="templatePaginatorright"
+        ></ng-container>
+      </div>
+    </ng-template>
+  </p-table>
+</div>

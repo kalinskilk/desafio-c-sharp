@@ -1,0 +1,82 @@
+:host ::ng-deep {
+  .app-drawer {
+    .p-drawer-header {
+      background-color: var(--highlight-yellow-100);
+      color: var(--primary-text);
+      font-weight: 600;
+      padding: 1rem;
+      border-bottom: 1px solid var(--highlight-yellow-100);
+    }
+
+    .p-drawer-content {
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+      padding: 0;
+      height: 100%;
+    }
+
+    .drawer-content {
+      padding: 0;
+      height: 100%;
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+    }
+
+    .p-drawer-close {
+      color: var(--primary-text);
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  /* Estilos específicos para o modo escuro */
+  .dark-mode & {
+    .app-drawer {
+      background-color: var(--primary-bg);
+
+      .p-drawer-header {
+        background-color: var(--highlight-yellow-100);
+        color: var(--primary-text);
+        border-bottom: 1px solid var(--gray-80);
+      }
+
+      .p-drawer-content {
+        background-color: var(--primary-bg) !important;
+        color: var(--primary-text) !important;
+      }
+
+      .drawer-content {
+        background-color: var(--primary-bg) !important;
+        color: var(--primary-text) !important;
+      }
+
+      .p-drawer-close {
+        color: var(--primary-text);
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      /* Garantir que todos os textos dentro do drawer no modo escuro tenham a cor correta */
+      label,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      span {
+        color: var(--primary-text) !important;
+      }
+
+      .fw-bold {
+        color: var(--primary-text) !important;
+        font-weight: bold;
+      }
+    }
+  }
+}

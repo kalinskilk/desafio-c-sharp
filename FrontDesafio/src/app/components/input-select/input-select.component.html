@@ -1,0 +1,21 @@
+<div class="field w-100">
+  <label *ngIf="label" for="control" class="block text-sm font-medium mb-1">
+    {{ label }}
+    <span class="text-red-500" *ngIf="control?.invalid || (frmIsRequired && !value)">*</span>
+  </label>
+
+  <div class="input-wrapper w-100">
+    <p-select
+      class="w-100"
+      [options]="options"
+      [ngModel]="value"
+      (onChange)="onSelect($event)"
+      [disabled]="isDisabled"
+      [style]="{ width: '100%' }"
+      placeholder="{{ placeholder }}"
+      [filter]="true"
+      emptyFilterMessage="Nenhum resultado encontrado"
+      appendTo="body"
+    />
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="main-container">
+  <p-card>
+    <ng-template #header>
+      <p-button
+        label="Voltar"
+        icon="pi pi-arrow-left"
+        (click)="onBack()"
+        class="mx-2"
+      ></p-button>
+
+      <p-button
+        label="Novo"
+        icon="pi pi-plus"
+        iconPos="right"
+        (click)="onNew()"
+        class="mx-2"
+      ></p-button>
+
+      <p-button
+        label="Config. Ambientes"
+        icon="pi pi-plus"
+        iconPos="right"
+        (click)="onConfigOptions()"
+        class="mx-2"
+      ></p-button>
+
+      <p-button
+        label="Checar status"
+        icon="pi pi-plus"
+        iconPos="right"
+        (click)="onCheckStatus()"
+        class="mx-2"
+      ></p-button>
+    </ng-template>
+    <app-table [grid]="grid"></app-table>
+  </p-card>
+</div>
+
+<app-drawer-edit-feature
+  #drawerEditFeature
+  (onSubmitForm)="onSaveEdit($event)"
+></app-drawer-edit-feature>
+
+<app-drawer-config-ambiente-feature
+  #drawerConfigAmbienteFeature
+  (onSubmitForm)="onSaveConfigAmbiente($event)"
+></app-drawer-config-ambiente-feature>
+
+<app-drawer-check-status
+  #drawerCheckStatus
+  (onSubmitForm)="onVerificaAtivoGlobalmente($event)"
+></app-drawer-check-status>

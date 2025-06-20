@@ -1,0 +1,94 @@
+.input-wrapper {
+  position: relative;
+
+  i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  input {
+    width: 100%;
+
+    &.with-icon {
+      padding-left: 35px;
+    }
+  }
+
+  .toggle-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280; // cor do ícone
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .toggle-password-btn:focus {
+    outline: none;
+  }
+}
+
+.size-small {
+  height: 2rem;
+  font-size: 0.875rem;
+}
+
+.size-large {
+  height: 3rem;
+  font-size: 1.125rem;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.info-icon {
+  color: #9ca3af;
+  font-size: 1rem;
+  cursor: help;
+}
+
+:host-context(.dark-mode) {
+  label {
+    color: var(--primary-text);
+  }
+
+  .input-wrapper {
+    input {
+      background-color: var(--gray-90);
+      color: var(--primary-text);
+      border-color: var(--gray-80);
+
+      &:focus {
+        border-color: var(--highlight-yellow-100);
+        box-shadow: 0 0 0 0.2rem rgba(251, 208, 36, 0.25);
+      }
+
+      &:disabled {
+        background-color: var(--gray-80);
+        opacity: 0.6;
+      }
+    }
+
+    i {
+      color: var(--primary-text);
+    }
+  }
+
+  .info-icon {
+    color: var(--gray-70);
+  }
+
+  .error-message {
+    color: #f87171;
+  }
+}

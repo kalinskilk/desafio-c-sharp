@@ -1,0 +1,18 @@
+<div [class.error]="errorMessage">
+  <div class="d-flex align-items-center gap-2 mb-2">
+    <label *ngIf="label" [for]="id" class="block text-sm font-medium mb-1">
+      {{ label }}
+      <span *ngIf="required" class="text-red-500">*</span>
+    </label>
+  </div>
+
+  <p-inputSwitch
+    [id]="id"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    (ngModelChange)="onToggleChange(value)"
+  ></p-inputSwitch>
+
+  <small *ngIf="errorMessage" class="error-message">{{ errorMessage }}</small>
+  <small *ngIf="helperText && !errorMessage" class="helper-text">{{ helperText }}</small>
+</div>

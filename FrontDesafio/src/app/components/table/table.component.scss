@@ -1,0 +1,379 @@
+:host ::ng-deep {
+  .p-datatable {
+    font-size: var(--font-text1-size);
+
+    .p-datatable-header,
+    .p-datatable-footer {
+      font-size: var(--font-text2-size) !important;
+    }
+
+    .p-datatable-thead {
+      > tr {
+        > th {
+          font-size: var(--font-subtitle-size);
+          color: var(--gray-100); // Cor do texto
+          background: var(--sidebar-bg); // Cor de fundo
+
+          &:hover {
+            background: var(--highlight-yellow-90); // Cor de fundo ao passar o mouse
+            color: var(--highlight-yellow-text); // Cor do texto ao passar o mouse
+          }
+        }
+      }
+    }
+
+    .p-sortable-column {
+      .p-sortable-column-icon {
+        color: var(--highlight-yellow-100); // Cor do ícone de ordenação
+
+        &:hover {
+          color: var(--highlight-yellow-90); // Cor do ícone ao passar o mouse
+        }
+      }
+
+      &.p-highlight {
+        background: var(--highlight-yellow-100); // Cor de fundo quando a coluna está em destaque
+        color: var(--highlight-yellow-text); // Cor do texto quando a coluna está em destaque
+
+        .p-sortable-column-icon {
+          color: var(
+            --highlight-yellow-text
+          ); // Cor do ícone de ordenação quando a coluna está em destaque
+        }
+
+        &:hover {
+          background: var(
+            --highlight-yellow-90
+          ); // Cor de fundo ao passar o mouse na coluna em destaque
+          color: var(
+            --highlight-yellow-text
+          ); // Cor do texto ao passar o mouse na coluna em destaque
+        }
+      }
+    }
+
+    .p-datatable-tbody > tr {
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+
+      > td {
+        background-color: inherit;
+        color: inherit;
+        border-color: var(--gray-80);
+      }
+
+      &:nth-child(even) {
+        background-color: var(--gray-100);
+      }
+    }
+
+    .p-paginator {
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+      font-size: var(--font-text1-size);
+
+      .p-paginator-page.p-paginator-page-selected {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .p-paginator-page,
+      .p-paginator-first,
+      .p-paginator-prev,
+      .p-paginator-next,
+      .p-paginator-last {
+        color: var(--primary-text);
+
+        &.p-highlight {
+          background-color: var(--highlight-yellow-100);
+          color: var(--highlight-yellow-text);
+        }
+      }
+    }
+
+    .p-select {
+      border: 1px solid var(--primary-text-3);
+      border-radius: 10px;
+
+      .p-select-label {
+        border-color: var(--primary-text-3) !important;
+        border-radius: 10px;
+      }
+
+      .p-select-dropdown,
+      .p-select-label {
+        background-color: var(--primary-bg);
+        color: var(--primary-text-3);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .status-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: var(--font-text3-size);
+    background: #eff6ff;
+    color: #1e40af;
+  }
+
+  .status-badge.sem {
+    background: #fef2f2;
+    color: #991b1b;
+  }
+
+  .p-button.p-button-text {
+    padding: 0.5rem;
+    font-size: var(--font-text1-size);
+  }
+
+  .p-button.p-button-text:hover {
+    background: #f3f4f6;
+  }
+
+  .actions-column {
+    width: 120px !important;
+    position: sticky !important;
+    right: 0;
+    background: inherit;
+    z-index: 1;
+    box-shadow: -4px 0 6px -2px rgba(0, 0, 0, 0.05);
+    border-left: 1px solid var(--gray-80);
+
+    .flex {
+      gap: 0.5rem !important;
+      justify-content: center;
+    }
+
+    .table-action-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border-radius: 50%;
+      text-decoration: none;
+      background-color: transparent !important;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 0 0.25rem;
+      font-size: var(--font-text1-size) !important;
+
+      i {
+        font-size: var(--font-subtitle-size);
+        color: var(--primary-text) !important;
+      }
+
+      &:hover {
+        background-color: var(--highlight-yellow-100) !important;
+      }
+
+      span {
+        display: none;
+      }
+
+      &[disabled] {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .p-datatable.table-striped .p-datatable-tbody > tr:nth-child(even) {
+    background: #f9fafb;
+  }
+
+  .p-datatable.table-bordered {
+    .p-datatable-thead > tr > th,
+    .p-datatable-tbody > tr > td {
+      border: 1px solid #e5e7eb;
+    }
+  }
+
+  .p-datatable.table-dense {
+    .p-datatable-thead > tr > th,
+    .p-datatable-tbody > tr > td {
+      padding: 0.5rem;
+      font-size: var(--font-text2-size);
+    }
+  }
+
+  .p-datatable .p-datatable-tbody > tr.hoverable:hover {
+    background: #f3f4f6;
+  }
+
+  .frozen-column {
+    position: sticky;
+    left: 0;
+    background: inherit;
+    z-index: 1;
+  }
+
+  .p-inputtext {
+    width: 35%;
+    font-size: var(--font-text1-size);
+  }
+
+  /* --------------------------------------       */
+  /*              DARK MODE                       */
+  /* --------------------------------------       */
+
+  .dark-mode & {
+    .p-datatable {
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+
+      .p-datatable-thead {
+        > tr {
+          > th {
+            color: var(--gray-100); // Cor do texto
+            background: var(--sidebar-bg); // Cor de fundo
+
+            &:hover {
+              background: var(--highlight-yellow-90); // Cor de fundo ao passar o mouse
+              color: var(--highlight-yellow-text); // Cor do texto ao passar o mouse
+            }
+          }
+        }
+      }
+
+      .p-datatable-header,
+      .p-datatable-footer {
+        background-color: var(--gray-90);
+        color: var(--primary-text);
+        // font-size: var(--font-text2-size);
+      }
+
+      .p-datatable-thead > tr > th {
+        background-color: var(--sidebar-bg);
+        color: var(--primary-text);
+        border-color: var(--gray-80);
+        // font-size: var(--font-subtitle-size);
+      }
+
+      .p-datatable-tbody > tr {
+        background-color: var(--primary-bg);
+        color: var(--primary-text);
+        // font-size: var(--font-text1-size);
+
+        > td {
+          color: var(--primary-text);
+          background-color: inherit;
+          border-color: var(--gray-80);
+          font-size: var(--font-text1-size);
+        }
+
+        &:nth-child(even) {
+          background-color: var(--gray-90);
+        }
+
+        &.hoverable:hover {
+          background-color: var(--gray-80);
+        }
+      }
+
+      &.table-striped .p-datatable-tbody > tr:nth-child(even) {
+        background-color: var(--gray-90);
+      }
+
+      &.table-bordered {
+        .p-datatable-thead > tr > th,
+        .p-datatable-tbody > tr > td {
+          border-color: var(--gray-80);
+        }
+      }
+    }
+
+    .p-paginator {
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+      font-size: var(--font-text1-size);
+
+      .p-paginator-page.p-paginator-page-selected {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .p-paginator-page,
+      .p-paginator-first,
+      .p-paginator-prev,
+      .p-paginator-next,
+      .p-paginator-last {
+        color: var(--highlight-yellow-100);
+
+        &.p-highlight {
+          background-color: var(--highlight-yellow-100);
+          color: var(--highlight-yellow-text);
+        }
+      }
+    }
+
+    .p-inputtext {
+      background-color: var(--gray-90);
+      color: var(--primary-text);
+      border-color: var(--gray-80);
+      font-size: var(--font-text1-size);
+    }
+
+    .p-button.p-button-text {
+      color: var(--primary-text);
+      font-size: var(--font-text1-size);
+
+      &:hover {
+        background-color: var(--gray-80);
+      }
+
+      .pi {
+        color: #ffffff !important;
+      }
+    }
+
+    .actions-column {
+      .table-action-link {
+        background-color: transparent !important;
+
+        i {
+          color: #ffffff !important;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+    }
+
+    .status-badge {
+      background-color: rgba(30, 64, 175, 0.2);
+      font-size: var(--font-text3-size);
+    }
+
+    .status-badge.sem {
+      background-color: rgba(153, 27, 27, 0.2);
+    }
+
+    .p-select {
+      border: 1px solid var(--highlight-yellow-100);
+      border-radius: 10px !important;
+
+      .p-select-label {
+        border-color: var(--primary-bg) !important;
+        border-radius: 10px 0px 0px 10px !important;
+      }
+
+      .p-select-dropdown,
+      .p-select-label {
+        background-color: var(--primary-bg);
+        color: var(--highlight-yellow-100);
+      }
+
+      .p-select-dropdown {
+        border-radius: 0px 10px 10px 0px !important;
+      }
+    }
+
+    .p-paginator-current {
+      color: var(--highlight-yellow-100) !important;
+    }
+  }
+}

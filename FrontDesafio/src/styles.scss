@@ -1,0 +1,257 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  padding: 3%;
+  font-family: var(--font-primary);
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Aplicar transições suaves para mudanças de cor */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+:root {
+  /* Cores principais da interface */
+  --primary-bg: #ffffff;
+  --primary-text: #222327;
+  --primary-text-2: #58585f;
+  --primary-text-3: #a1a1aa;
+  --primary-contrast: #000000;
+
+  /* Amarelo destaque (botões, alertas, header lateral) */
+  --highlight-yellow-100: #fbd024;
+  --highlight-yellow-90: #ffd234;
+  --highlight-yellow-80: #ffdd66;
+  --highlight-yellow-text: #121212; /* Cor do texto em fundos amarelos para melhor contraste */
+
+  /* Preto para sidebar */
+  --sidebar-bg: #141414;
+  --sidebar-hover: #1e1e1e;
+  --sidebar-icon: #ffffff;
+
+  /* Cinzas para separadores, bordas e planos de fundo suaves */
+  --gray-100: #f6f6f6;
+  --gray-90: #e6e6e6;
+  --gray-80: #cfcfcf;
+  --gray-70: #bdbdbd;
+
+  /* Azul para ícones e ações (como os três tracinhos da tabela) */
+  --action-blue: #1e88e5;
+
+  /* Alerta */
+  --alert-bg: #fff4e5;
+  --alert-border: #f5c26b;
+  --alert-text: #c47e00;
+
+  --login-bg: #f3f4f6;
+}
+
+.p-inputtext,
+.p-dropdown,
+.p-multiselect,
+.p-inputnumber .p-inputtext,
+.p-inputtextarea,
+.p-calendar .p-inputtext {
+  background-color: var(--login-bg);
+  color: var(--primary-text);
+  border-color: var(--gray-80);
+}
+
+/* Configurações para modo escuro */
+.dark-mode {
+  /* Cores principais da interface */
+  --primary-bg: #1e1e1e;
+  --primary-text: #e0e0e0;
+  --primary-contrast: #ffffff;
+
+  /* Amarelo destaque (botões, alertas, header lateral) */
+  --highlight-yellow-100: #fbd024;
+  --highlight-yellow-90: #ffd234;
+  --highlight-yellow-80: #ffdd66;
+  --highlight-yellow-text: #121212; /* Cor do texto em fundos amarelos para melhor contraste */
+
+  /* Preto para sidebar */
+  --sidebar-bg: #121212;
+  --sidebar-hover: #1a1a1a;
+  --sidebar-icon: #ffffff;
+
+  /* Cinzas para separadores, bordas e planos de fundo suaves */
+  --gray-100: #2a2a2a;
+  --gray-90: #333333;
+  --gray-80: #444444;
+  --gray-70: #555555;
+
+  /* Azul para ícones e ações (como os três tracinhos da tabela) */
+  --action-blue: #3399ff;
+
+  /* Alerta */
+  --alert-bg: #3d3223;
+  --alert-border: #b88336;
+  --alert-text: #ffb74d;
+
+  --login-bg: #1a1a1a;
+
+  /* Estiliza inputs e formulários no modo escuro */
+  .p-inputtext,
+  .p-dropdown,
+  .p-multiselect,
+  .p-inputnumber .p-inputtext,
+  .p-inputtextarea,
+  .p-calendar .p-inputtext {
+    background-color: var(--gray-90);
+    color: var(--primary-text);
+    border-color: var(--gray-80);
+  }
+
+  /* Estiliza labels e textos de formulários */
+  label,
+  .p-float-label label {
+    color: var(--primary-text);
+  }
+
+  /* Estiliza os modais e diálogos */
+  .p-dialog .p-dialog-content {
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    border-radius: 0px !important;
+  }
+
+  .p-dialog-footer {
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    border-radius: 0px 0px 10px 10px !important;
+  }
+}
+
+.logo {
+  font-size: var(--line-height-h4);
+  font-weight: bold;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* dialog */
+
+.p-dialog-close-button {
+  background: #ffffff !important;
+  color: var(--highlight-yellow-text) !important;
+}
+
+.p-confirmdialog-reject-button {
+  color: #ffffff !important;
+}
+
+.p-button-danger.p-confirmdialog-accept-button {
+  background: #ef4444 !important;
+}
+
+.p-confirmdialog-accept-button {
+  background: var(--primary-100) !important;
+}
+
+.p-confirmdialog-reject-button {
+  background: #ffffff !important;
+  color: var(--primary-100) !important;
+  border: 1px solid var(--primary-100) !important;
+}
+
+/* erro message inputs (form required) */
+
+.error-message {
+  color: var(--vermelho-100);
+  font-size: 0.75rem;
+}
+
+/* tooltip */
+.custom-tooltip-small {
+  max-width: 250px !important;
+  font-size: 0.75rem !important;
+  padding: 0.5rem !important;
+  background-color: var(--geral-90) !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.custom-tooltip-small .p-tooltip-arrow {
+  border-right-color: var(--geral-90) !important;
+}
+
+.p-inputtext,
+.p-inputnumber,
+.p-inputtextarea {
+  width: 100%;
+}
+
+.p-confirmdialog-accept-button {
+  &.p-confirmdialog-accept-button {
+    background: var(--highlight-yellow-100) !important;
+    border: 1px solid var(--highlight-yellow-100) !important;
+    color: var(--highlight-yellow-text) !important;
+  }
+}
+
+.p-confirmdialog-reject-button {
+  &.p-confirmdialog-reject-button {
+    background: var(--primary-bg) !important;
+    border: 1px solid var(--primary-text) !important;
+    color: var(--primary-text) !important;
+  }
+}
+
+.p-dialog-header {
+  background: var(--highlight-yellow-100) !important;
+  border: 1px solid var(--highlight-yellow-100) !important;
+  border-radius: 12px 12px 0px 0px;
+  color: var(--highlight-yellow-text) !important;
+  font-weight: 600 !important;
+}
+
+.p-dialog-title {
+  color: var(--highlight-yellow-text) !important;
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+}
+
+.p-dialog {
+  border-radius: var(--p-dialog-border-radius);
+}
+
+.p-dialog,
+.p-dialog-content {
+  border: none !important;
+}
+
+.p-dialog-content {
+  padding: 2rem !important;
+  background: var(--primary-bg) !important;
+  border-radius: 0px 0px 10px 10px !important;
+}
+
+.p-dialog-close-button {
+  background: var(--highlight-yellow-100) !important;
+  color: var(--highlight-yellow-text) !important;
+  border-radius: 50% !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  padding: 0.5rem !important;
+}
+
+.p-checkbox-checked .p-checkbox-box {
+  background: var(--highlight-yellow-100) !important;
+  border: 1px solid var(--highlight-yellow-text) !important;
+  color: var(--highlight-yellow-text) !important;
+}
+
+.p-button-text {
+  color: var(--highlight-yellow-text) !important;
+}
