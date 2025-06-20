@@ -7,7 +7,7 @@ namespace ApiDesafio.Application.Services
     {
         Task<AmbienteDto> CreateAmbienteAsync(CreateAmbienteDto dto);
 
-        Task<IEnumerable<Ambiente>> GetAllAsync();
+        Task<IEnumerable<AmbienteDto>> GetAllAsync();
 
         Task<AmbienteDto?> GetByIdAsync(int id);
     }
@@ -70,7 +70,15 @@ namespace ApiDesafio.Application.Services
             }
         }
 
-        public async Task<IEnumerable<Ambiente>> GetAllAsync() => await _repository.GetAllAsync();
+        public async Task<IEnumerable<AmbienteDto>> GetAllAsync()
+        {
+            var result = await _repository.GetAllAsync();
+            return result.Select(x => new AmbienteDto
+            {
+                Id = x.Id,
+                NomeUnico = x.NomeUnico
+            });
+        }
     }
 }
 
