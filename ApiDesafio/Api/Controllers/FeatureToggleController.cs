@@ -1,7 +1,6 @@
 using ApiDesafio.Domain.Entities;
 using ApiDesafio.Application.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ApiDesafio.API.Controllers;
 

@@ -1,11 +1,7 @@
-using ApiDesafio.Domain.Entities;
-using ApiDesafio.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Cryptography;
 
 namespace ApiDesafio.API.Controllers;
-
 
 
 [ApiController]

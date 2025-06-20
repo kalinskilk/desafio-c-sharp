@@ -11,9 +11,11 @@ namespace ApiDesafio.Application.Extensions
         {
             // Serviços da camada de aplicação
             services.AddScoped<IFeatureToggleService, FeatureToggleService>();
+            services.AddScoped<IAmbienteService, AmbienteService>();
 
             // Repositórios (Domain ↔ Infra)
             services.AddScoped<IFeatureToggleRepository, FeatureToggleRepository>();
+            services.AddScoped<IAmbienteRepository, AmbienteRepository>();
 
             return services;
         }
