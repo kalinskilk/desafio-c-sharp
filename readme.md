@@ -7,6 +7,9 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
 ## 🛠️ Tecnologias Utilizadas
 
 - **.NET 9**
+- **Angular**
+- **PrimeNG**
+- **Bootstrap**
 - **ASP.NET Core Web API**
 - **Entity Framework Core**
 - **SQLLite**
@@ -21,15 +24,15 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
 1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/kalinskilk/desafio-c-sharp
+   git clone https://github.com/kalinskilk/desafio-c-sharp.git
    cd desafio-c-sharp
    ```
 
-2. **Instale as dependências**:
+2. **Instale as dependências do backend**:
    Certifique-se de ter o SDK do .NET 9 instalado. Depois, execute:
 
    ```bash
-   dotnet restore
+    cd ApiDesafio && dotnet restore
    ```
 
 3. **Configure o banco de dados** :
@@ -45,8 +48,41 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
    ```
 
 5. Acesse o Swagger:
+
    ```
    http://localhost:5275/index.html
+   ```
+
+6. **Instale as dependências do Front end**:
+   Certifique-se de ter o node.js instalado. Em um novo terminal execute:
+
+   ```bash
+   cd FrontDesafio && npm install
+   ```
+
+   Com yarn execute:
+
+   ```bash
+   cd FrontDesafio && yarn install
+   ```
+
+7. **Execute a aplicação**:
+   Execute:
+
+   ```bash
+   npm start
+   ```
+
+   Com yarn execute:
+
+   ```bash
+    yarn start
+   ```
+
+8. **Acesse a aplicação**:
+
+   ```bash
+   http://localhost:4200/
    ```
 
 ---
@@ -56,18 +92,21 @@ Este repositório contém a implementação da API backend, desenvolvida em C#, 
 - Não é necessário usuário e senha para login.
 - Para obter um token de teste, basta chamar o endpoint:
 
-  ```
-  POST /api/auth/token
-  ```
+```
 
-  Esse endpoint gera um token JWT com **claims fixas**, que pode ser utilizado para autenticar endpoints protegidos (POST e PUT).
+POST /api/auth/token
+
+```
+
+Esse endpoint gera um token JWT com **claims fixas**, que pode ser utilizado para autenticar endpoints protegidos (POST e PUT).
 
 - Para usar o token no Swagger:
-  1. Clique em **Authorize** no topo direito da interface do Swagger.
-  2. Insira o token no formato:
-     ```
-     Bearer {seu_token_aqui}
-     ```
+
+1. Clique em **Authorize** no topo direito da interface do Swagger.
+2. Insira o token no formato:
+   ```
+   Bearer {seu_token_aqui}
+   ```
 
 ---
 
@@ -79,22 +118,22 @@ A estrutura do projeto segue o padrão DDD, com separação clara de responsabil
 
 - `Domain/`
 
-  - Contém **Entidades** e **Interfaces** que representam o modelo de negócio.
-  - Exemplo: `FeatureToggle.cs`, `IAmbienteRepository.cs`.
+- Contém **Entidades** e **Interfaces** que representam o modelo de negócio.
+- Exemplo: `FeatureToggle.cs`, `IAmbienteRepository.cs`.
 
 - `Application/`
 
-  - Contém os **DTOs**, **Services** e **Interfaces de Aplicação**.
-  - Exemplo: `FeatureToggleService.cs`, `AmbienteDto.cs`.
+- Contém os **DTOs**, **Services** e **Interfaces de Aplicação**.
+- Exemplo: `FeatureToggleService.cs`, `AmbienteDto.cs`.
 
 - `Infrastructure/`
 
-  - Implementação dos repositórios com **Entity Framework Core**.
-  - Exemplo: `FeatureToggleRepository.cs`.
+- Implementação dos repositórios com **Entity Framework Core**.
+- Exemplo: `FeatureToggleRepository.cs`.
 
 - `API/`
-  - Camada de **exposição** (controllers e configuração do Swagger, autenticação, etc).
-  - Exemplo: `FeatureToggleController.cs`, `AuthController.cs`.
+- Camada de **exposição** (controllers e configuração do Swagger, autenticação, etc).
+- Exemplo: `FeatureToggleController.cs`, `AuthController.cs`.
 
 Essa organização promove **baixa dependência entre camadas**, facilitando a manutenção e testes.
 
@@ -105,17 +144,20 @@ Essa organização promove **baixa dependência entre camadas**, facilitando a m
 - Os testes utilizam o **xUnit**.
 - Estão localizados na pasta:
 
-  ```
-  Tests/
-    └── Application/
-        ├── ConfiguracaoAmbienteFeatureServiceUnitTests.cs
-        └── AmbienteControllerUnitTests.cs
-  ```
+```
+
+Tests/
+└── Application/
+├── ConfiguracaoAmbienteFeatureServiceUnitTests.cs
+└── AmbienteControllerUnitTests.cs
+
+```
 
 - Para rodar os testes:
-  ```bash
-  dotnet test
-  ```
+
+```bash
+dotnet test
+```
 
 ---
 

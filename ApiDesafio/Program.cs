@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
 
 /* DATABASE */
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=db/ApiDesafio.db"));
+    options.UseSqlite("Data Source=ApiDesafio.db"));
 
 /* SERVICES */
 builder.Services.AddApplicationServices();
