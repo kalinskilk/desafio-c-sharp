@@ -44,12 +44,7 @@ namespace ApiDesafio.Application.Services
 
         private async Task CreateValidate(string NomeUnico)
         {
-
-            var filtros = new Dictionary<string, object>{
-            { "NomeUnico", NomeUnico }
-            };
-
-            var has = await _repository.ExistsWithPropertiesButDifferentIdAsync<FeatureToggle>(filtros);
+            var has = await _repository.ExistsWithSameNomeUnicoButDifferent(NomeUnico);
             if (has)
             {
                 throw new InvalidOperationException("Já existe outra FeatureToggle com essa descrição.");
@@ -81,12 +76,7 @@ namespace ApiDesafio.Application.Services
 
         private async Task UpdateValidate(string NomeUnico, int id)
         {
-            var filtros = new Dictionary<string, object>{
-            { "NomeUnico", NomeUnico },
-            { "Id", id },
-            };
-
-            var has = await _repository.ExistsWithPropertiesButDifferentIdAsync<FeatureToggle>(filtros);
+            var has = await _repository.ExistsWithPropertiesButDifferentIdAsync<FeatureToggle>(NomeUnico, id);
             if (has)
             {
                 throw new InvalidOperationException("Já existe outra FeatureToggle com essa descrição.");

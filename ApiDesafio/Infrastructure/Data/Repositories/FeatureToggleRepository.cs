@@ -46,23 +46,11 @@ public class FeatureToggleRepository : IFeatureToggleRepository
 
 
     public async Task<bool> ExistsWithPropertiesButDifferentIdAsync<T>(
-    Dictionary<string, object> propertyValuePairs) where T : class
+        string NomeUnico,
+        int id
+    ) where T : class
     {
-        var parameter = Expression.Parameter(typeof(T), "e");
-
-        Expression? body = null;
-
-        foreach (var kvp in propertyValuePairs)
-        {
-            var property = Expression.Property(parameter, kvp.Key);
-            var constant = Expression.Constant(kvp.Value);
-            var equals = Expression.Equal(property, constant);
-
-            body = body == null ? equals : Expression.AndAlso(body, equals);
-        }
-
-        var lambda = Expression.Lambda<Func<T, bool>>(body!, parameter);
-
-        return await _context.Set<T>().AnyAsync(lambda);
+        return await _context.FeatureToggle
+            .AnyAsync(f => f.NomeUnico == NomeUnico && f.Id != id);
     }
 }
