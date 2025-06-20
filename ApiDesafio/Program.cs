@@ -1,43 +1,33 @@
 using ApiDesafio.Infrastructure.Data.Context;
-using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using ApiDesafio.Application.Extensions;
+using ApiDesafio.API.Configuration;
+using ApiDesafio.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.ConfigureInvalidModelState();
 
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "DesafioAPI",
-        Description = "A simple example ASP.NET Core Web API",
-        TermsOfService = new Uri("https://example.com/terms"),
-        Contact = new OpenApiContact
-        {
-            Name = "Example Contact",
-            Url = new Uri("https://example.com/contact")
-        },
-        License = new OpenApiLicense
-        {
-            Name = "Example License",
-            Url = new Uri("https://example.com/license")
-        }
-    });
-});
-
+/* DATABASE */
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=db/ApiDesafio.db"));
+
+/* SERVICES */
+builder.Services.AddApplicationServices();
+
+/* JWT */
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
+/* SWAGGER */
+builder.Services.AddSwaggerDocumentation();
 
 
 var app = builder.Build();
 
-app.MapControllers();
-
+app.UseMiddleware<ApiExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
@@ -46,11 +36,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        /*   options.RoutePrefix = string.Empty; */
+        options.RoutePrefix = string.Empty;
     });
 }
 
-/* app.UseHttpsRedirection(); */
+app.UseAuthentication();
 
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.UseMiddleware<ApiExceptionMiddleware>();
 
 app.Run();
